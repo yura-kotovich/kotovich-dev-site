@@ -1,566 +1,1211 @@
 <!DOCTYPE html>
 <html lang="uk">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Kotovich | Dev & AI Solutions</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kotovich | ШІ-Консультація та Оптимізація — Юрій Котович</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
 
-<!-- Google Site Verification -->
-<meta name="google-site-verification" content="gR7ds0ZEIQybLoFDWoTmr1NM7AvbDKhE43C9WVo0OvY" />
+    <!-- Tailwind v3 CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'neo-bg': '#FFFAE5',
+                        'neo-main': '#FF4D00',
+                        'neo-accent': '#A3FF00',
+                        'neo-purple': '#9D00FF',
+                        'neo-black': '#0f0f0f',
+                        'neo-white': '#ffffff',
+                        'neo-blue': '#0047FF'
+                    },
+                    fontFamily: {
+                        'sans': ['"Space Grotesk"', 'sans-serif'],
+                        'display': ['"Syne"', 'sans-serif'],
+                        'heading': ['"Archivo Black"', 'sans-serif'],
+                        'mono': ['"JetBrains Mono"', 'monospace'],
+                    },
+                    boxShadow: {
+                        'neo': '8px 8px 0px 0px #0f0f0f',
+                        'neo-sm': '4px 4px 0px 0px #0f0f0f',
+                        'neo-lg': '12px 12px 0px 0px #0f0f0f',
+                        'neo-hover': '12px 12px 0px 0px #0f0f0f',
+                        'neo-active': '2px 2px 0px 0px #0f0f0f',
+                    }
+                }
+            }
+        }
+    </script>
 
-<!-- Fonts -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Space+Grotesk:wght@300;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #FFFAE5;
+            color: #0f0f0f;
+            overflow-x: hidden;
+        }
 
-<!-- Icons -->
-<script src="https://unpkg.com/lucide@latest"></script>
+        ::selection {
+            background-color: #0f0f0f;
+            color: #A3FF00;
+        }
 
-<!-- Tailwind -->
-<script src="https://cdn.tailwindcss.com"></script>
-<script>
-tailwind.config = {
-theme: {
-extend: {
-colors: {
-'neo-bg': '#FFFAE5',
-'neo-main': '#FF4D00',
-'neo-accent': '#A3FF00',
-'neo-purple': '#9D00FF',
-'neo-black': '#0f0f0f',
-'neo-white': '#ffffff',
-'neo-blue': '#0047FF'
-},
-fontFamily: {
-'display': ['"Syne"', 'sans-serif'],
-'body': ['"Space Grotesk"', 'sans-serif'],
-'heavy': ['"Archivo Black"', 'sans-serif'],
-},
-boxShadow: {
-'neo': '8px 8px 0px 0px #0f0f0f',
-'neo-sm': '4px 4px 0px 0px #0f0f0f',
-'neo-lg': '12px 12px 0px 0px #0f0f0f',
-'neo-hover': '12px 12px 0px 0px #0f0f0f',
-'neo-active': '2px 2px 0px 0px #0f0f0f',
-},
-cursor: { 'none': 'none' }
-}
-}
-}
-</script>
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 16px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #FFFAE5;
+            border-left: 3px solid #0f0f0f;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #0f0f0f;
+            border: 3px solid #FFFAE5;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #FF4D00;
+        }
 
-<style>
-body {
-background-color: #FFFAE5;
-color: #0f0f0f;
-overflow-x: hidden;
-cursor: none;
-}
+        /* Keyframe Animations */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
 
-::selection {
-background-color: #0f0f0f;
-color: #A3FF00;
-}
+        @keyframes float-reverse {
+            0%, 100% { transform: translateY(0px) rotate(12deg); }
+            50% { transform: translateY(15px) rotate(6deg); }
+        }
 
-::-webkit-scrollbar { width: 16px; }
-::-webkit-scrollbar-track { background: #FFFAE5; border-left: 3px solid #0f0f0f; }
-::-webkit-scrollbar-thumb { background: #0f0f0f; border: 3px solid #FFFAE5; }
-::-webkit-scrollbar-thumb:hover { background: #FF4D00; }
+        @keyframes marquee {
+            0% { transform: translateX(0%); }
+            100% { transform: translateX(-50%); }
+        }
 
-.text-outline { -webkit-text-stroke: 2px #0f0f0f; color: transparent; }
-.text-outline-white { -webkit-text-stroke: 2px #ffffff; color: transparent; }
+        @keyframes shake {
+            0%, 100% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-3px, 3px) rotate(-0.5deg); }
+            20% { transform: translate(3px, -3px) rotate(0.5deg); }
+            35% { transform: translate(-3px, -3px) rotate(-0.5deg); }
+            50% { transform: translate(3px, 3px) rotate(0.5deg); }
+            65% { transform: translate(-3px, 3px) rotate(-0.5deg); }
+            80% { transform: translate(3px, -3px) rotate(0.5deg); }
+        }
 
-.grain {
-position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-pointer-events: none;
-background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
-z-index: 9998;
-}
+        .animate-float {
+            animation: float 6s ease-in-out infinite;
+        }
 
-.marquee-container { overflow: hidden; white-space: nowrap; }
-.marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
-@keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+        .animate-float-reverse {
+            animation: float-reverse 7s ease-in-out infinite;
+        }
 
-#cursor {
-position: fixed; top: 0; left: 0; width: 24px; height: 24px;
-background-color: #0f0f0f; border-radius: 0%; pointer-events: none;
-z-index: 9999; transform: translate(-50%, -50%);
-transition: width 0.2s, height 0.2s, background-color 0.2s;
-mix-blend-mode: difference;
-}
+        .animate-marquee {
+            animation: marquee 25s linear infinite;
+        }
 
-#loader {
-position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-background: #0f0f0f; z-index: 10000; display: flex;
-justify-content: center; align-items: center;
-}
-.loader-bar { width: 20px; height: 0%; background: #A3FF00; margin: 0 5px; }
+        .animate-shake {
+            animation: shake 0.15s ease-in-out infinite;
+        }
 
-/* Mobile Menu */
-#mobile-menu {
-position: fixed; top: 0; left: 0; width: 100%; height: 100vh;
-background: #0f0f0f; color: #FFFAE5; z-index: 9997;
-display: flex; flex-direction: column; justify-content: center;
-align-items: center; gap: 2rem; font-size: 2.5rem;
-font-family: '"Archivo Black"', sans-serif; text-transform: uppercase;
-transform: translateY(-100%); transition: transform 0.4s ease;
-}
-#mobile-menu.open { transform: translateY(0); }
-#mobile-menu a { color: #A3FF00; text-decoration: none; }
-#mobile-menu a:hover { text-decoration: line-through; }
+        /* Neobrutalist Text Outlines */
+        .text-outline {
+            -webkit-text-stroke: 1.5px #0f0f0f;
+            color: transparent;
+        }
 
-/* FAQ Accordion Style */
-.faq-item {
-border: 4px solid black;
-box-shadow: 8px 8px 0px 0px #0f0f0f;
-transition: all 0.2s ease;
-}
-.faq-item:hover {
-transform: translate(-2px, -2px);
-box-shadow: 10px 10px 0px 0px #0f0f0f;
-}
-.faq-item[open] {
-background-color: #A3FF00;
-}
-.faq-item summary {
-padding: 1.5rem;
-font-weight: bold;
-font-size: 1.25rem;
-cursor: pointer;
-display: flex;
-justify-content: space-between;
-align-items: center;
-}
-.faq-item summary::-webkit-details-marker {
-display: none;
-}
-.faq-item summary::after {
-content: '+';
-font-size: 2rem;
-font-family: 'Archivo Black', sans-serif;
-}
-.faq-item[open] summary::after {
-content: '−';
-}
-.faq-item p {
-padding: 0 1.5rem 1.5rem;
-font-size: 1.1rem;
-}
+        .text-outline-white {
+            -webkit-text-stroke: 1.5px #ffffff;
+            color: transparent;
+        }
 
-/* Hide cursor on mobile */
-@media (pointer: coarse), (max-width: 768px) {
-body { cursor: auto !important; }
-#cursor { display: none !important; }
-}
-
-/* Service Card Animation */
-.service-card {
-transition: all 0.3s ease;
-}
-.service-card:hover {
-transform: translate(-4px, -4px);
-box-shadow: 12px 12px 0px 0px #0f0f0f;
-}
-</style>
+        /* Grain Overlay */
+        .grain {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.055'/%3E%3C/svg%3E");
+            z-index: 9998;
+        }
+    </style>
 </head>
-<body class="font-body">
+<body class="font-sans selection:bg-neo-black selection:text-neo-accent selection:select-all select-none">
 
-<!-- Grain -->
-<div class="grain"></div>
+    <div class="grain"></div>
 
-<!-- Cursor (desktop only) -->
-<div id="cursor"></div>
+    <!-- Navigation Header -->
+    <nav class="fixed top-0 left-0 w-full flex justify-between items-center p-4 md:px-8 md:py-6 z-50 bg-neo-bg border-b-4 border-neo-black shadow-neo-sm">
+        <div class="flex items-center gap-3">
+            <a href="#" class="font-heading text-3xl md:text-4xl tracking-tighter hover:text-neo-main transition-colors select-none">
+                Kotovich<span class="text-neo-main">.</span>
+            </a>
+        </div>
 
-<!-- Loader -->
-<div id="loader">
-<div class="flex gap-2 h-32 items-end">
-<div class="loader-bar"></div>
-<div class="loader-bar"></div>
-<div class="loader-bar"></div>
-<div class="loader-bar"></div>
-<div class="loader-bar"></div>
-</div>
-<h1 class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-neo-bg font-display font-bold text-6xl mix-blend-exclusion">ЗАВАНТАЖЕННЯ</h1>
-</div>
+        <!-- Desktop Links -->
+        <div class="hidden lg:flex items-center gap-6 font-bold text-base">
+            <a href="#packages" class="text-neo-black hover:line-through decoration-4 decoration-neo-accent px-2 py-1 transition-all">ДІАГНОСТИКА</a>
+            <a href="#manifesto" class="text-neo-black hover:line-through decoration-4 decoration-neo-accent px-2 py-1 transition-all">МАНІФЕСТ</a>
+            <a href="#process" class="text-neo-black hover:line-through decoration-4 decoration-neo-accent px-2 py-1 transition-all">ЯК МИ ПРАЦЮЄМО</a>
+            <a href="#toolkit" class="text-neo-black hover:line-through decoration-4 decoration-neo-accent px-2 py-1 transition-all">ІНСТРУМЕНТАРІЙ</a>
+            <a href="#faq" class="text-neo-black hover:line-through decoration-4 decoration-neo-accent px-2 py-1 transition-all">FAQ</a>
+            
+            <a
+                href="https://t.me/ai24q"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="flex items-center gap-2 border-3 border-neo-black bg-neo-accent px-5 py-2 hover:bg-neo-black hover:text-neo-accent hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-neo transition-all font-heading text-sm"
+            >
+                <i class="w-4 h-4" data-lucide="send"></i>
+                КАНАЛ
+            </a>
+        </div>
 
-<!-- Mobile Menu -->
-<div id="mobile-menu">
-<a href="#services">ПОСЛУГИ</a>
-<a href="#process">ПРОЦЕС</a>
-<a href="#contact">КОНТАКТИ</a>
-<button id="close-menu" class="absolute top-8 right-8 text-neo-accent">
-<i data-lucide="x" class="w-12 h-12"></i>
-</button>
-</div>
+        <!-- Mobile Drawer Toggle Trigger -->
+        <button
+            id="menu-toggle"
+            aria-label="Toggle Menu"
+            class="lg:hidden border-3 border-neo-black p-2 bg-neo-white text-neo-black active:translate-x-[1px] active:translate-y-[1px] shadow-neo-sm hover:bg-neo-accent transition-all"
+        >
+            <i data-lucide="menu" id="menu-icon" class="w-6 h-6 stroke-[3]"></i>
+        </button>
+    </nav>
 
-<!-- Navigation -->
-<nav class="fixed top-0 left-0 w-full flex justify-between items-center p-4 md:p-8 z-50 pointer-events-none mix-blend-difference text-[#FFFAE5]">
-<div class="pointer-events-auto group">
-<span class="font-heavy text-3xl md:text-4xl tracking-tighter hover:text-neo-accent transition-colors">Kotovich.</span>
-</div>
-<div class="pointer-events-auto hidden md:flex gap-6 lg:gap-8 font-bold text-lg">
-<a href="#services" class="hover:line-through decoration-4 decoration-neo-accent">ПОСЛУГИ</a>
-<a href="#process" class="hover:line-through decoration-4 decoration-neo-accent">ПРОЦЕС</a>
-<a href="#contact" class="border-2 border-[#FFFAE5] px-6 py-2 hover:bg-[#FFFAE5] hover:text-black transition-all duration-300 shadow-none hover:shadow-[4px_4px_0px_0px_#A3FF00]">КОНТАКТИ</a>
-</div>
-<div class="pointer-events-auto md:hidden border-2 border-[#FFFAE5] p-2" id="menu-btn">
-<i data-lucide="menu" class="w-6 h-6"></i>
-</div>
-</nav>
+    <!-- Mobile Drawer Menu Overlay -->
+    <div
+        id="mobile-menu"
+        class="fixed inset-0 top-[76px] w-full bg-neo-black z-45 lg:hidden flex flex-col justify-between p-6 transition-all duration-300 ease-in-out translate-x-full opacity-0 pointer-events-none"
+    >
+        <div class="flex flex-col gap-6 mt-4">
+            <a href="#packages" onclick="toggleMobileMenu()" class="font-heading text-3xl text-neo-accent hover:text-neo-white hover:line-through transition-colors">ДІАГНОСТИКА</a>
+            <a href="#manifesto" onclick="toggleMobileMenu()" class="font-heading text-3xl text-neo-accent hover:text-neo-white hover:line-through transition-colors">МАНІФЕСТ</a>
+            <a href="#process" onclick="toggleMobileMenu()" class="font-heading text-3xl text-neo-accent hover:text-neo-white hover:line-through transition-colors">ЯК МИ ПРАЦЮЄМО</a>
+            <a href="#toolkit" onclick="toggleMobileMenu()" class="font-heading text-3xl text-neo-accent hover:text-neo-white hover:line-through transition-colors">ІНСТРУМЕНТАРІЙ</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="font-heading text-3xl text-neo-accent hover:text-neo-white hover:line-through transition-colors">FAQ</a>
+        </div>
 
-<main id="smooth-wrapper">
-<div id="smooth-content">
+        <div class="flex flex-col gap-4 mb-16">
+            <a
+                href="https://tally.so/r/lbMd8v"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full text-center font-heading text-lg border-4 border-neo-white bg-neo-main text-neo-white p-4 shadow-[4px_4px_0px_0px_#A3FF00] active:translate-x-[2px] active:translate-y-[2px] active:shadow-none transition-all"
+            >
+                ПОДАТИ ЗАЯВКУ
+            </a>
+            <a
+                href="https://t.me/ai24q"
+                target="_blank"
+                rel="noopener noreferrer"
+                class="w-full text-center font-heading text-lg border-4 border-neo-white bg-neo-accent text-neo-black p-4 active:translate-x-[2px] active:translate-y-[2px] transition-all flex items-center justify-center gap-2"
+            >
+                <i class="w-5 h-5 fill-current" data-lucide="send"></i>
+                ТЕЛЕГРАМ-КАНАЛ
+            </a>
+        </div>
+    </div>
 
-<!-- HERO -->
-<section class="relative min-h-screen flex flex-col justify-center items-center pt-20 px-4 overflow-hidden border-b-4 border-black bg-neo-bg">
-<div class="absolute top-1/4 left-4 w-20 h-20 md:w-48 md:h-48 border-4 border-black bg-neo-main rounded-full shadow-neo float-anim opacity-80"></div>
-<div class="absolute bottom-1/4 right-4 w-24 h-24 md:w-64 md:h-64 border-4 border-black bg-neo-purple rotate-12 shadow-neo float-anim-reverse z-10"></div>
-<div class="absolute top-1/2 right-1/4 w-12 h-12 md:w-16 md:h-16 border-4 border-black bg-neo-accent shadow-neo-sm"></div>
+    <!-- Spacer -->
+    <div class="h-[76px] lg:h-[88px]"></div>
 
-<div class="relative z-20 text-center max-w-4xl">
-<div class="overflow-hidden"><h1 class="hero-text font-display font-bold text-[10vw] md:text-[12vw] leading-[0.85] tracking-tighter text-black">AI-РІШЕННЯ</h1></div>
-<div class="overflow-hidden"><h1 class="hero-text font-display font-bold text-[10vw] md:text-[12vw] leading-[0.85] tracking-tighter text-neo-blue text-outline">ТА РОЗРОБКА</h1></div>
-<div class="overflow-hidden"><h1 class="hero-text font-display font-bold text-[10vw] md:text-[12vw] leading-[0.85] tracking-tighter text-black">ЯКІ МАСШТАБУЮТЬ</h1></div>
-<p class="hero-sub mt-6 md:mt-8 font-body text-lg md:text-2xl font-bold max-w-md mx-auto bg-white border-4 border-black p-4 shadow-neo rotate-1 md:rotate-2 text-sm md:text-base">
-Автоматизую продажі, підтримку та операційні процеси за допомогою AI-агентів.
-</p>
-</div>
+    <!-- HERO SECTION -->
+    <section class="relative min-h-[calc(100vh-76px)] lg:min-h-[calc(100vh-88px)] flex flex-col justify-center items-center pt-10 pb-16 px-4 overflow-hidden border-b-4 border-neo-black bg-neo-bg">
+        <div class="absolute top-1/4 left-4 w-20 h-20 md:w-44 md:h-44 border-4 border-neo-black bg-neo-main rounded-full shadow-neo animate-float opacity-80 pointer-events-none"></div>
+        <div class="absolute bottom-1/4 right-4 w-24 h-24 md:w-56 md:h-56 border-4 border-neo-black bg-neo-purple rotate-12 shadow-neo animate-float-reverse pointer-events-none"></div>
+        <div class="absolute top-1/2 right-12 w-12 h-12 md:w-16 md:h-16 border-4 border-neo-black bg-neo-accent shadow-neo-sm rotate-[45deg] pointer-events-none"></div>
+        
+        <div class="relative z-20 text-center max-w-5xl space-y-8 px-4">
+            <div class="flex flex-wrap items-center justify-center gap-3">
+                <span class="font-mono text-xs font-bold border-2 border-neo-black px-2.5 py-1 bg-neo-white text-neo-black shadow-[2px_2px_0px_0px_#0f0f0f] rotate-1">
+                    ЮРА КОТОВИЧ — AI ПРАКТИК
+                </span>
+                <span class="font-mono text-xs font-bold border-2 border-neo-black px-2.5 py-1 bg-neo-accent text-neo-black shadow-[2px_2px_0px_0px_#0f0f0f] -rotate-1 flex items-center gap-1">
+                    <i class="w-3 h-3 text-neo-black fill-current animate-bounce" data-lucide="zap"></i>
+                    ВЛАСНИЙ ДОСВІД
+                </span>
+            </div>
 
-<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce">
-<i data-lucide="arrow-down" class="w-10 h-10 md:w-12 md:h-12 text-black stroke-[3]"></i>
-</div>
-</section>
+            <div class="space-y-1">
+                <h1 class="font-heading text-[10vw] sm:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tighter text-neo-black uppercase">
+                    ОПТИМІЗАЦІЯ ВІД
+                </h1>
+                <h1 class="font-heading text-[10vw] sm:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tighter text-neo-blue text-outline uppercase select-all">
+                    KOTOVICH
+                </h1>
+                <h1 class="font-heading text-[10vw] sm:text-[8vw] lg:text-[7vw] leading-[0.9] tracking-tighter text-neo-black uppercase">
+                    ШТ_ІНТЕЛЕКТУ<span class="text-neo-main">.</span>
+                </h1>
+            </div>
 
-<!-- MARQUEE -->
-<div class="w-full bg-neo-accent border-b-4 border-black py-4 md:py-6 overflow-hidden flex items-center transform -skew-y-2 origin-left mt-[-4px] z-30 relative">
-<div class="marquee-container font-heavy text-3xl md:text-5xl lg:text-6xl text-black uppercase tracking-widest">
-<div class="marquee-content">
-/// AI-АГЕНТИ /// ІНТЕЛЕКТУАЛЬНА АВТОМАТИЗАЦІЯ /// БІЛЬШЕ КОНВЕРСІЙ /// МЕНШЕ РУЧНОЇ РОБОТИ /// KOTOVICH DEV & AI SOLUTIONS ///
-/// AI-АГЕНТИ /// ІНТЕЛЕКТУАЛЬНА АВТОМАТИЗАЦІЯ /// БІЛЬШЕ КОНВЕРСІЙ /// МЕНШЕ РУЧНОЇ РОБОТИ /// KOTOVICH DEV & AI SOLUTIONS ///
-</div>
-</div>
-</div>
+            <div class="relative max-w-2xl mx-auto">
+                <div class="absolute inset-0 bg-neo-black translate-x-1.5 translate-y-1.5 rounded-none pointer-events-none"></div>
+                <div class="relative bg-neo-white border-3 border-neo-black p-5 md:p-6 text-left space-y-4">
+                    <p class="font-bold text-sm md:text-lg text-neo-black leading-relaxed">
+                        Досить гуглити загальні промпти. Перетворюємо складну теорію штучного інтелекту в готові інструкційні інструменти, які щотижня економлять понад <span class="text-neo-main font-bold decoration-neo-accent underline decoration-4">15 годин вашого часу</span>.
+                    </p>
+                    
+                    <div class="pt-2 flex flex-col sm:flex-row gap-3">
+                        <a
+                            href="#packages"
+                            class="flex-1 text-center font-heading text-xs md:text-sm border-3 border-neo-black bg-neo-accent text-neo-black py-3.5 shadow-neo-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-neo transition-all duration-150"
+                        >
+                            ОБРАТИ СЕСІЮ (ВІД 2500 ГРН)
+                        </a>
+                        <a
+                            href="https://t.me/ai24q"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="flex-1 text-center font-heading text-xs md:text-sm border-3 border-neo-black bg-neo-black text-neo-bg py-3.5 hover:bg-neo-main hover:text-neo-white transition-all duration-150 flex items-center justify-center gap-1.5"
+                        >
+                            <i class="w-3.5 h-3.5 fill-current" data-lucide="send"></i>
+                            ШІ ДЛЯ ЛЮДЕЙ І БІЗНЕСУ
+                        </a>
+                    </div>
+                </div>
+            </div>
 
-<!-- SERVICES -->
-<section id="services" class="relative py-20 md:py-32 px-4 md:px-12 bg-neo-black text-neo-bg overflow-hidden">
-<div class="container mx-auto grid grid-cols-1 md:grid-cols-12 gap-8 md:gap-12">
-<div class="md:col-span-5">
-<div class="sticky top-20 md:top-32">
-<h2 class="font-heavy text-5xl md:text-7xl lg:text-8xl mb-4 md:mb-6 text-neo-accent">ПОСЛУГИ</h2>
-<div class="w-full h-3 md:h-4 bg-neo-main border-2 border-white shadow-[4px_4px_0px_0px_#ffffff]"></div>
-</div>
-</div>
-<div class="md:col-span-7 space-y-8 md:space-y-12 text-lg md:text-2xl lg:text-3xl font-bold leading-snug">
-<p class="manifesto-text opacity-20">Створюю <span class="text-neo-main bg-white px-2">кастомні AI-агенти</span>, які не просто відповідають клієнтам, а виконують дії та закривають бізнес-задачі.</p>
-<p class="manifesto-text opacity-20">Не експерименти з ШІ, а продумані рішення з чітким бізнес-результатом: менше ручної роботи, більше конверсій і контрольовані витрати.</p>
-<p class="manifesto-text opacity-20">Для малого та середнього бізнесу, e-commerce, сервісних компаній, B2B та SaaS.</p>
+            <div class="flex flex-wrap justify-center items-center gap-6 font-mono font-bold text-xs text-stone-600 uppercase">
+                <span class="flex items-center gap-1.5">
+                    <i class="w-4 h-4 text-neo-purple" data-lucide="brain"></i>
+                    Розумний контекст
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <i class="w-4 h-4 text-neo-main" data-lucide="terminal"></i>
+                    ШИ-кодування у Cursor
+                </span>
+                <span class="flex items-center gap-1.5">
+                    <i class="w-4 h-4 text-neo-accent" data-lucide="sparkles"></i>
+                    До 10x прискорення
+                </span>
+            </div>
+        </div>
 
-<div class="grid grid-cols-2 gap-4 mt-8">
-<div class="bg-neo-bg text-black border-4 border-white p-4 md:p-6 shadow-[8px_8px_0px_0px_#A3FF00] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all stats-card text-center">
-<h3 class="font-heavy text-4xl md:text-5xl">-40-70%</h3>
-<p class="text-xs md:text-sm font-mono uppercase mt-1">Навантаження на команду</p>
-</div>
-<div class="bg-neo-main text-white border-4 border-white p-4 md:p-6 shadow-[8px_8px_0px_0px_#9D00FF] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all stats-card text-center">
-<h3 class="font-heavy text-4xl md:text-5xl">+15-50%</h3>
-<p class="text-xs md:text-sm font-mono uppercase mt-1">Конверсії</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+        <div class="absolute bottom-6 left-1/2 -translate-x-1/2 animate-bounce flex flex-col items-center">
+            <span class="font-mono text-[9px] font-black uppercase text-stone-600 mb-1 tracking-widest leading-none">
+                Читати маніфест
+            </span>
+            <i class="w-6 h-6 text-neo-black stroke-[3]" data-lucide="arrow-down"></i>
+        </div>
+    </section>
 
-<!-- SERVICE BLOCKS -->
-<section id="service-blocks" class="py-16 md:py-24 bg-neo-bg border-t-4 border-black">
-<div class="container mx-auto px-4">
-<h2 class="font-heavy text-4xl md:text-6xl text-center mb-12 md:mb-16">ОСНОВНІ ПОСЛУГИ</h2>
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-<div class="service-card bg-neo-black text-neo-bg border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between">
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4 text-neo-accent">AI-агенти для бізнесу</h3>
-<p class="font-bold text-sm md:text-base mb-4">Розробка автономних AI-агентів для продажів, підтримки та операцій.</p>
-<ul class="text-sm md:text-base space-y-2">
-<li>• Продажі та лідогенерація 24/7</li>
-<li>• Клієнтська підтримка</li>
-<li>• Інтеграції: сайт, Telegram, CRM</li>
-</ul>
-</div>
-<div class="mt-4">
-<p class="font-heavy text-xl md:text-2xl">від 12 000 грн</p>
-</div>
-</div>
+    <!-- MARQUEE TICKER 1 -->
+    <div class="bg-neo-accent border-b-4 border-neo-black py-4 md:py-6 overflow-hidden flex items-center transform -skew-y-2 origin-left z-10 relative shadow-neo-sm">
+        <div class="w-full relative overflow-hidden whitespace-nowrap">
+            <div class="inline-block whitespace-nowrap animate-marquee">
+                <span class="font-heading text-xl md:text-3xl lg:text-4xl text-neo-black uppercase tracking-wider select-none">
+                    /// ДАНИХ БІЛЬШЕ НЕМАЄ /// НЕЙРОМЕРЕЖІ ПРАВЛЯТЬ /// ЛОГІКА ДЛЯ НЕЛОГІЧНОГО /// 24/7 ОПТИМІЗАЦІЯ ШІ /// КІБЕРПАНК — ЦЕ ЗАРАЗ /// /// ДАНИХ БІЛЬШЕ НЕМАЄ /// НЕЙРОМЕРЕЖІ ПРАВЛЯТЬ /// ЛОГІКА ДЛЯ НЕЛОГІЧНОГО /// 24/7 ОПТИМІЗАЦІЯ ШІ /// КІБЕРПАНК — ЦЕ ЗАРАЗ /// 
+                </span>
+            </div>
+        </div>
+    </div>
 
-<div class="service-card bg-neo-purple text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between rotate-1 hover:rotate-0 transition-transform">
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4">Інтеграція AI у сайти</h3>
-<p class="font-bold text-sm md:text-base mb-4">Додаю інтелект до існуючих продуктів.</p>
-<ul class="text-sm md:text-base space-y-2">
-<li>• AI-чати та віджети</li>
-<li>• Рекомендаційні системи</li>
-<li>• Розумний пошук (RAG)</li>
-</ul>
-</div>
-<div class="mt-4">
-<p class="font-heavy text-xl md:text-2xl">від 12 000 грн</p>
-</div>
-</div>
+    <!-- MANIFESTO -->
+    <section id="manifesto" class="relative py-20 px-4 md:px-12 bg-neo-black text-neo-bg overflow-hidden border-b-4 border-neo-black">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+            <div class="lg:col-span-5">
+                <div class="lg:sticky lg:top-32 space-y-6">
+                    <span class="font-mono text-xs uppercase bg-neo-main text-neo-white px-3 py-1 border-2 border-neo-white font-bold inline-block">
+                        НАВІЩО ВАМ ЦЕ
+                    </span>
+                    <h2 class="font-heading text-5xl md:text-7xl lg:text-8xl mb-4 text-neo-accent leading-none">
+                        МАНІФЕСТ
+                    </h2>
+                    <div class="w-full h-3 md:h-4 bg-neo-main border-2 border-neo-white shadow-[4px_4px_0px_0px_#ffffff]"></div>
+                    <p class="font-mono text-sm text-gray-400 max-w-sm">
+                        * Більшість людей використовує надпотужні штучні інтелекти на 2% від їхніх можливостей. Ми розкриваємо інші 98%.
+                    </p>
+                </div>
+            </div>
 
-<div class="service-card bg-neo-main text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between">
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4">AI Automation Consulting</h3>
-<p class="font-bold text-sm md:text-base mb-4">Аудит процесів + впровадження автоматизації з ШІ.</p>
-<ul class="text-sm md:text-base space-y-2">
-<li>• Аналіз бізнес-процесів</li>
-<li>• Zapier / Make / n8n + AI</li>
-<li>• Економія 10-30 годин на тиждень</li>
-</ul>
-</div>
-<div class="mt-4">
-<p class="font-heavy text-xl md:text-2xl">від 8 000 грн</p>
-</div>
-</div>
+            <div class="lg:col-span-7 space-y-8 md:space-y-12 text-lg md:text-2xl lg:text-3xl font-bold leading-snug">
+                <div class="border-3 border-neo-white bg-neo-black p-6 md:p-8 rounded-none shadow-[8px_8px_0px_0px_#FF4D00] transition-colors hover:bg-[#151515]">
+                    <p class="text-neo-bg">
+                        Ми віримо, що інтернет заповнився шаблонними, нудними та м'якими рішеннями. 
+                        <span class="text-neo-main bg-neo-white px-2 py-0.5 mx-1 inline-block select-all">ШІ використовують як ліниву заміну Google</span>, 
+                        не розуміючи його справжньої глибини.
+                    </p>
+                </div>
 
-<div class="service-card bg-neo-blue text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between md:col-span-2 lg:col-span-3">
-<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4">MLOps та production</h3>
-<p class="font-bold text-sm md:text-base mb-4">Надійне розгортання AI-рішень.</p>
-<p class="font-heavy text-xl md:text-2xl">від 25 000 грн</p>
-</div>
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4">Аналітика та AI-прогнозування</h3>
-<p class="font-bold text-sm md:text-base mb-4">Прогноз продажів, попиту, відтоку.</p>
-<p class="font-heavy text-xl md:text-2xl">від 15 000 грн</p>
-</div>
-<div>
-<h3 class="font-heavy text-2xl md:text-3xl mb-4">AI для маркетингу</h3>
-<p class="font-bold text-sm md:text-base mb-4">Персоналізація, A/B тестування.</p>
-<p class="font-heavy text-xl md:text-2xl">від 12 000 грн</p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
+                <div class="border-3 border-neo-white bg-neo-black p-6 md:p-8 rounded-none shadow-[8px_8px_0px_0px_#A3FF00] transition-colors hover:bg-[#151515]">
+                    <p class="text-neo-bg">
+                        Шокуючий факт: <strong class="text-neo-accent">90% компаній</strong> впроваджують AI хаотично — купують підписки, ставлять одне питання в чат, отримують загальну відповідь і розчаровуються. Проблема не в інструменті. Проблема в методології.
+                    </p>
+                </div>
 
-<!-- PROCESS -->
-<section id="process" class="py-16 md:py-24 bg-neo-bg border-t-4 border-black">
-<div class="container mx-auto px-4">
-<h2 class="font-heavy text-4xl md:text-6xl text-center mb-12 md:mb-16">ЯК Я ПРАЦЮЮ</h2>
-<div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8 text-center">
-<div class="bg-neo-black text-neo-bg border-4 border-black shadow-neo p-6 md:p-8 flex flex-col items-center justify-center hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
-<i data-lucide="message-circle" class="w-12 h-12 md:w-16 md:h-16 text-neo-accent mb-4 stroke-[3]"></i>
-<h3 class="font-heavy text-2xl md:text-3xl mb-2">1. КОНСУЛЬТАЦІЯ</h3>
-<p class="font-bold text-sm md:text-base">15 хв безплатно - обговорюємо задачу</p>
-</div>
-<div class="bg-neo-purple text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col items-center justify-center rotate-1 hover:rotate-0 transition-transform">
-<i data-lucide="search" class="w-12 h-12 md:w-16 md:h-16 text-neo-bg mb-4 stroke-[3]"></i>
-<h3 class="font-heavy text-2xl md:text-3xl mb-2">2. АНАЛІЗ</h3>
-<p class="font-bold text-sm md:text-base">Аналіз задач і процесів</p>
-</div>
-<div class="bg-neo-main text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col items-center justify-center hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
-<i data-lucide="code" class="w-12 h-12 md:w-16 md:h-16 text-neo-bg mb-4 stroke-[3]"></i>
-<h3 class="font-heavy text-2xl md:text-3xl mb-2">3. РОЗРОБКА</h3>
-<p class="font-bold text-sm md:text-base">Прототип / MVP / Розробка</p>
-</div>
-<div class="bg-neo-blue text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col items-center justify-center -rotate-1 hover:rotate-0 transition-transform">
-<i data-lucide="rocket" class="w-12 h-12 md:w-16 md:h-16 text-neo-bg mb-4 stroke-[3]"></i>
-<h3 class="font-heavy text-2xl md:text-3xl mb-2">4. ЗАПУСК</h3>
-<p class="font-bold text-sm md:text-base">Інтеграція та підтримка</p>
-</div>
-</div>
-</div>
-</section>
+                <div class="border-3 border-neo-white bg-neo-black p-6 md:p-8 rounded-none shadow-[8px_8px_0px_0px_#9D00FF] transition-colors hover:bg-[#151515]">
+                    <p class="text-neo-bg">
+                        Я працюю як особистий архітектор ваших ШІ-процесів. Без абстрактної води, без тижневих лекцій. Тільки готові інструкції, налаштовані асистенти та автоматизація, яка звільняє <span class="text-neo-accent bg-neo-purple px-2 py-0.5 inline-block">15–20 годин на тиждень</span>.
+                    </p>
+                </div>
 
-<!-- PACKAGES -->
-<section id="packages" class="py-16 md:py-20 bg-neo-blue border-t-4 border-black">
-<div class="container mx-auto px-4">
-<div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-12 border-b-4 border-black pb-4 gap-4">
-<h2 class="font-heavy text-4xl md:text-6xl lg:text-7xl text-white">ПАКЕТИ</h2>
-<i data-lucide="package" class="w-10 h-10 md:w-12 md:h-12 text-neo-accent stroke-[3] animate-pulse"></i>
-</div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8 pt-4">
+                    <div class="bg-neo-bg text-neo-black border-4 border-neo-white p-6 shadow-[8px_8px_0px_0px_#A3FF00] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-center flex flex-col justify-center items-center">
+                        <i class="w-10 h-10 text-neo-main mb-2 stroke-[2.5]" data-lucide="zap"></i>
+                        <h3 class="font-heading text-4xl md:text-5xl">10х</h3>
+                        <p class="text-xs font-mono uppercase mt-1 tracking-widest font-bold">Прискорення роботи</p>
+                        <p class="text-xs text-gray-500 mt-2 font-medium">Для текстів, кодингу, аналізу та контенту</p>
+                    </div>
 
-<div class="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8">
-<div class="service-card bg-neo-bg border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between hover:bg-neo-accent transition-colors group">
-<h3 class="font-heavy text-3xl md:text-4xl uppercase mb-4">START</h3>
-<p class="font-bold text-sm md:text-base mb-4">AI-аудит + проста автоматизація або базовий AI-агент</p>
-<p class="font-mono text-xs md:text-sm mb-4">Для малого бізнесу</p>
-<div class="mt-auto">
-<p class="font-heavy text-2xl md:text-3xl">Індивідуально</p>
-</div>
-</div>
+                    <div class="bg-neo-main text-neo-white border-4 border-neo-white p-6 shadow-[8px_8px_0px_0px_#9D00FF] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all text-center flex flex-col justify-center items-center">
+                        <i class="w-10 h-10 text-neo-accent mb-2 stroke-[2.5]" data-lucide="sparkles"></i>
+                        <h3 class="font-heading text-4xl md:text-5xl">500+ грн</h3>
+                        <p class="text-xs font-mono uppercase mt-1 tracking-widest font-bold">Початкова цінність</p>
+                        <p class="text-xs text-orange-200 mt-2 font-medium">Годинна оптимізація бізнес-процесу</p>
+                    </div>
+                </div>
 
-<div class="service-card bg-neo-purple text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between rotate-1 hover:rotate-0 transition-transform">
-<h3 class="font-heavy text-3xl md:text-4xl uppercase mb-4">GROWTH</h3>
-<p class="font-bold text-sm md:text-base mb-4">AI-агент + інтеграції + автоматизація процесів</p>
-<p class="font-mono text-xs md:text-sm mb-4">Для бізнесу у зростанні</p>
-<div class="mt-auto">
-<p class="font-heavy text-2xl md:text-3xl">Індивідуально</p>
-</div>
-</div>
+                <div class="pt-6">
+                    <h4 class="font-heading text-xl text-neo-accent uppercase tracking-widest mb-4">
+                        ЧОТИРИ СТОВПИ AI-ЕФЕКТИВНОСТІ:
+                    </h4>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-base text-gray-300">
+                        <div class="flex gap-3 items-start p-3 bg-zinc-900 border border-zinc-800">
+                            <i class="w-5 h-5 text-neo-main mt-1 shrink-0" data-lucide="shield-alert"></i>
+                            <div>
+                                <h5 class="font-bold text-neo-white">Промпт-Інжиніринг</h5>
+                                <p class="text-sm text-gray-400 mt-1">Отримуйте стабільний результат, а не випадкову відповідь з лотереї.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-3 items-start p-3 bg-zinc-900 border border-zinc-800">
+                            <i class="w-5 h-5 text-neo-accent mt-1 shrink-0" data-lucide="sliders"></i>
+                            <div>
+                                <h5 class="font-bold text-neo-white">Мультимоделі</h5>
+                                <p class="text-sm text-gray-400 mt-1">Добираємо комбінацію ChatGPT, Claude, DeepSeek та Grok під конкретні задачі.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<div class="service-card bg-neo-main text-white border-4 border-black shadow-neo p-6 md:p-8 flex flex-col justify-between hover:shadow-none hover:translate-x-2 hover:translate-y-2 transition-all">
-<h3 class="font-heavy text-3xl md:text-4xl uppercase mb-4">PRO</h3>
-<p class="font-bold text-sm md:text-base mb-4">Кілька AI-агентів + MLOps + аналітика</p>
-<p class="font-mono text-xs md:text-sm mb-4">Для B2B, SaaS, великих команд</p>
-<div class="mt-auto">
-<p class="font-heavy text-2xl md:text-3xl">Індивідуально</p>
-</div>
-</div>
-</div>
-</div>
-</section>
+    <!-- METHODOLOGY PROCESS SECTION -->
+    <section id="process" class="py-20 md:py-28 bg-neo-bg border-b-4 border-neo-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-16 border-b-4 border-neo-black pb-6 gap-6">
+                <div>
+                    <span class="font-mono text-sm uppercase bg-neo-black text-neo-accent px-3 py-1 border-2 border-neo-black font-bold inline-block mb-3">
+                        МЕТОДИКА ЮРІЯ
+                    </span>
+                    <h2 class="font-heading text-4xl md:text-6xl tracking-tight text-neo-black leading-none">
+                        ЯК ЦЕ ПРАЦЮЄ?
+                    </h2>
+                </div>
+                <div class="flex items-center gap-3 font-mono font-bold text-sm md:text-base border-4 border-neo-black p-3 bg-neo-white shadow-neo-sm rotate-2">
+                    <i class="w-5 h-5 text-neo-purple shrink-0 animate-spin" data-lucide="hourglass"></i>
+                    <span>ПОВНА ТРАНСФОРМАЦІЯ ЗА КІЛЬКА СЕСІЙ</span>
+                </div>
+            </div>
 
-<!-- FAQ Section -->
-<section id="faq" class="py-16 md:py-24 bg-neo-bg border-t-4 border-black">
-<div class="container mx-auto px-4">
-<h2 class="font-heavy text-4xl md:text-6xl text-center mb-12 md:mb-16">ЧАСТІ ПИТАННЯ</h2>
-<div class="max-w-3xl mx-auto space-y-4">
-<details class="faq-item bg-white">
-<summary>Чому мені потрібен AI для мого бізнесу?</summary>
-<p>AI може автоматизувати до 80% рутинних завдань, зекономивши вам десятки годин на тиждень. Він також допомагає залучати нових клієнтів 24/7 та покращувати якість обслуговування, що безпосередньо впливає на ваш прибуток.</p>
-</details>
-<details class="faq-item bg-neo-accent">
-<summary>Це дуже складно і дорого?</summary>
-<p>Ні! Ми пропонуємо пакети для будь-якого бюджету. Почати можна з 12 000 грн, а ми беремо на себе всю технічну роботу. Ви отримуєте результат без необхідності вивчати програмування чи складні інструменти.</p>
-</details>
-<details class="faq-item bg-neo-purple text-white">
-<summary>Як швидко я побачу результат?</summary>
-<p>Багато наших клієнтів відчувають економію часу вже протягом першого тижня. Перших лідів від автоматизованої системи можна отримати протягом 30 днів. Окупність у більшості кейсів — 1-3 місяці.</p>
-</details>
-<details class="faq-item bg-neo-main text-white">
-<summary>А що, якщо AI зробить помилку і налякає клієнтів?</summary>
-<p>Ми використовуємо "систему безпечного старту". Спочатку AI тестується лише нами, потім запускається на обмеженій кількості запитів, і тільки після вашого затвердження працює в повну силу. Ви завжди можете зупинити його одним кліком.</p>
-</details>
-</div>
-</div>
-</section>
+            <!-- Steps Bento Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+                <!-- Step 1 -->
+                <div class="relative border-4 border-neo-black p-6 md:p-8 flex flex-col justify-between hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300 min-h-[360px] bg-neo-black text-neo-bg shadow-[8px_8px_0px_0px_#A3FF00]">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="w-12 h-12 rounded-none border-4 border-current flex items-center justify-center font-heading text-2xl font-black">
+                                1
+                            </span>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 bg-neo-accent text-neo-black border-2 border-neo-black">
+                                Крок 1: Фокусування
+                            </span>
+                        </div>
+                        <h3 class="font-heading text-xl md:text-2xl mb-4 text-left leading-none tracking-tight">
+                            ДІАГНОСТИКА ТА АНАЛІЗ
+                        </h3>
+                        <p class="font-bold text-sm md:text-base opacity-90 leading-relaxed text-left">
+                            Розбираємо ваші щоденні задачі, рутинні операції та поточні вузькі місця. Шукаємо процеси, де використання ШІ дасть вивільнення 10-15 годин на тиждень.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 border-t-2 border-current pt-4">
+                        <span class="font-mono text-xs font-bold tracking-widest uppercase">Шлях клієнта</span>
+                        <div class="p-2 border-2 border-current bg-neo-black/10">
+                            <i class="w-8 h-8" data-lucide="search"></i>
+                        </div>
+                    </div>
+                </div>
 
-<!-- CTA -->
-<section id="contact" class="py-20 md:py-32 bg-neo-bg flex flex-col items-center justify-center text-center overflow-hidden relative px-4">
-<h2 class="font-display font-bold text-3xl md:text-5xl lg:text-6xl mb-6 md:mb-8 z-10">ГОТОВІ ДО AI-ТРАНСФОРМАЦІЇ?</h2>
-<p class="font-body text-lg md:text-xl max-w-2xl mb-8 md:mb-10">Запишіться на безплатну 15-хвилинну консультацію — обговоримо вашу задачу та знайдемо, де AI дасть найбільший ефект.</p>
-<div class="flex flex-col md:flex-row gap-4 md:gap-6 z-10">
-<a href="https://zcal.co/kotovich/15min" target="_blank" rel="noopener noreferrer" class="relative group">
-<div class="absolute inset-0 bg-black translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 transition-transform group-hover:translate-x-5 group-hover:translate-y-5 md:group-hover:translate-x-6 md:group-hover:translate-y-6"></div>
-<div class="relative border-4 border-black bg-neo-main px-8 py-4 md:px-12 md:py-6 font-heavy text-xl md:text-2xl text-white hover:-translate-y-1 hover:-translate-x-1 active:translate-x-1 active:translate-y-1 transition-transform duration-100">
-ЗАПИСАТИСЯ НА КОНСУЛЬТАЦІЮ
-</div>
-</a>
-<a href="https://t.me/kotovich_dev" target="_blank" rel="noopener noreferrer" class="relative group">
-<div class="absolute inset-0 bg-neo-accent translate-x-3 translate-y-3 md:translate-x-4 md:translate-y-4 transition-transform group-hover:translate-x-5 group-hover:translate-y-5 md:group-hover:translate-x-6 md:group-hover:translate-y-6"></div>
-<div class="relative border-4 border-black bg-neo-bg px-8 py-4 md:px-12 md:py-6 font-heavy text-xl md:text-2xl text-black hover:-translate-y-1 hover:-translate-x-1 active:translate-x-1 active:translate-y-1 transition-transform duration-100 flex items-center gap-2">
-<i data-lucide="send" class="w-5 h-5 md:w-6 md:h-6"></i>
-НАПИСАТИ В TELEGRAM
-</div>
-</a>
-</div>
-</section>
+                <!-- Step 2 -->
+                <div class="relative border-4 border-neo-black p-6 md:p-8 flex flex-col justify-between hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300 min-h-[360px] bg-neo-purple text-neo-white shadow-[8px_8px_0px_0px_#FFFAE5] border-neo-white border-2">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="w-12 h-12 rounded-none border-4 border-current flex items-center justify-center font-heading text-2xl font-black">
+                                2
+                            </span>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 bg-neo-main text-neo-white border-2 border-neo-black">
+                                Крок 2: Кастомізація
+                            </span>
+                        </div>
+                        <h3 class="font-heading text-xl md:text-2xl mb-4 text-left leading-none tracking-tight">
+                            ПРОМПТИНГ ТА СИНТЕЗ
+                        </h3>
+                        <p class="font-bold text-sm md:text-base opacity-90 leading-relaxed text-left">
+                            Створюємо індивідуальні системні інструкції (Custom Instructions / GPTs) та зв'язуємо інструменти (ChatGPT, Claude, Cursor) під ваші професійні потреби. Ламаємо рутину.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 border-t-2 border-current pt-4">
+                        <span class="font-mono text-xs font-bold tracking-widest uppercase">Шлях клієнта</span>
+                        <div class="p-2 border-2 border-current bg-neo-black/10">
+                            <i class="w-8 h-8" data-lucide="zap"></i>
+                        </div>
+                    </div>
+                </div>
 
-<!-- FOOTER -->
-<footer class="bg-black text-neo-bg pt-16 pb-10 px-4 border-t-8 border-neo-accent">
-<div class="container mx-auto">
-<div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 text-center md:text-left">
-<div class="flex justify-center md:justify-start">
-<h1 class="font-heavy text-[14vw] md:text-[10vw] leading-none text-neo-bg select-none">Kotovich.</h1>
-</div>
-<div class="flex flex-col items-center md:items-end space-y-4 text-2xl md:text-3xl lg:text-4xl">
-<a href="https://t.me/kotovich_dev" target="_blank" rel="noopener noreferrer" class="font-display hover:text-neo-accent hover:ml-4 transition-all">TELEGRAM -></a>
-<a href="mailto:contact@kotovich.dev" class="font-display hover:text-neo-accent hover:ml-4 transition-all">EMAIL -></a>
-<a href="https://zcal.co/kotovich/15min" target="_blank" rel="noopener noreferrer" class="relative group mt-4 md:mt-6">
-<div class="absolute inset-0 bg-neo-accent translate-x-2 translate-y-2 md:translate-x-3 md:translate-y-3 transition-transform group-hover:translate-x-3 group-hover:translate-y-3 md:group-hover:translate-x-4 md:group-hover:translate-y-4"></div>
-<div class="relative border-4 border-black bg-neo-bg px-6 py-3 md:px-8 md:py-4 font-heavy text-xl md:text-2xl text-black hover:-translate-y-1 hover:-translate-x-1 active:translate-x-1 active:translate-y-1 transition-transform duration-100">
-КОНСУЛЬТАЦІЯ
-</div>
-</a>
-</div>
-</div>
-<div class="mt-16 pt-8 border-t-2 border-white/20 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm font-mono gap-4">
-<p>© 2026 Kotovich | Dev & AI Solutions. ВСІ ПРАВА ЗАХИЩЕНІ.</p>
-<p>СТВОРЕНО З ФОКУСОМ НА РЕЗУЛЬТАТ.</p>
-</div>
-</div>
-</footer>
+                <!-- Step 3 -->
+                <div class="relative border-4 border-neo-black p-6 md:p-8 flex flex-col justify-between hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all duration-300 min-h-[360px] bg-neo-main text-neo-white shadow-[8px_8px_0px_0px_#0047FF]">
+                    <div>
+                        <div class="flex justify-between items-start mb-6">
+                            <span class="w-12 h-12 rounded-none border-4 border-current flex items-center justify-center font-heading text-2xl font-black">
+                                3
+                            </span>
+                            <span class="font-mono text-xs font-bold px-2.5 py-1 bg-neo-accent text-neo-black border-2 border-neo-black">
+                                Крок 3: Інтеграція
+                            </span>
+                        </div>
+                        <h3 class="font-heading text-xl md:text-2xl mb-4 text-left leading-none tracking-tight">
+                            СУПРОВІД І РЕЗУЛЬТАТ
+                        </h3>
+                        <p class="font-bold text-sm md:text-base opacity-90 leading-relaxed text-left">
+                            Закріплюємо навички на практиці. Контролюємо правильність запитів, коригуємо сценарії використання, впроваджуємо автоматичні шаблони для заощадження часу.
+                        </p>
+                    </div>
+                    <div class="flex justify-between items-center mt-8 border-t-2 border-current pt-4">
+                        <span class="font-mono text-xs font-bold tracking-widest uppercase">Шлях клієнта</span>
+                        <div class="p-2 border-2 border-current bg-neo-black/10">
+                            <i class="w-8 h-8" data-lucide="target"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-</div>
-</main>
+            <!-- Call to action block -->
+            <div class="mt-16 border-4 border-neo-black bg-neo-purple text-neo-white p-6 md:p-8 shadow-neo text-center relative overflow-hidden group">
+                <div class="absolute top-0 right-0 w-32 h-32 bg-neo-accent translate-x-16 -translate-y-16 rotate-45 border-4 border-neo-black pointer-events-none group-hover:scale-110 transition-transform"></div>
+                <div class="relative z-10 max-w-2xl mx-auto space-y-4">
+                    <h3 class="font-heading text-2xl md:text-3xl leading-tight">
+                        НЕ ВИТРАЧАЙТЕ РОКИ НА ХАОТИЧНЕ ГУГЛЕННЯ
+                    </h3>
+                    <p class="font-bold text-sm md:text-base text-gray-200">
+                        Я розібрав сотні промптів та плагінів і знаю, що спрацює саме в у вашому завданні. Без теорії, тільки практичний інструментарій.
+                    </p>
+                    <div class="pt-2">
+                        <a
+                            href="#packages"
+                            class="inline-block font-heading text-sm md:text-base border-3 border-neo-black bg-neo-accent text-neo-black px-6 py-3 shadow-[4px_4px_0px_0px_#0f0f0f] hover:translate-x-[-2px] hover:translate-y-[-2px] hover:shadow-[6px_6px_0px_0px_#0f0f0f] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all"
+                        >
+                            ОБРАТИ ПАКЕТ ПОСЛУГ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-<!-- Scripts -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
-<script src="https://unpkg.com/lenis@1.0.29/dist/lenis.min.js"></script>
+    <!-- TICKER MARQUEE 2 -->
+    <div class="bg-neo-main border-y-4 border-neo-black py-4 md:py-6 overflow-hidden flex items-center transform skew-y-1 origin-right z-10 relative shadow-neo">
+        <div class="w-full relative overflow-hidden whitespace-nowrap">
+            <div class="inline-block whitespace-nowrap animate-marquee">
+                <span class="font-heading text-xl md:text-3xl lg:text-4xl text-neo-white uppercase tracking-widest select-none text-outline-white">
+                    /// ШВИДКИЙ СТАРТ /// ПРАКТИЧНІ ПРОМПТ-КАРТИ /// АУДИТ РУТИНИ /// АКТУАЛЬНІ МОДЕЛІ /// TELEGRAM КАНАЛ t.me/ai24q /// /// ШВИДКИЙ СТАРТ /// ПРАКТИЧНІ ПРОМПТ-КАРТИ /// АУДИТ РУТИНИ /// АКТУАЛЬНІ МОДЕЛІ /// TELEGRAM КАНАЛ t.me/ai24q /// 
+                </span>
+            </div>
+        </div>
+    </div>
 
-<script>
-lucide.createIcons();
+    <!-- PACKAGES & CALCULATOR -->
+    <section id="packages" class="py-20 md:py-28 bg-neo-black text-neo-bg border-b-4 border-neo-black relative">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center md:text-left mb-16 space-y-4">
+                <span class="font-mono text-xs uppercase bg-neo-accent text-neo-black px-3 py-1 border-2 border-neo-black font-bold inline-block">
+                    ПРАЙС-ЛИСТ ТА ПАКЕТИ
+                </span>
+                <h2 class="font-heading text-4xl md:text-6xl text-white leading-none">
+                     ОБЕРІТЬ СВІЙ РІВЕНЬ <span class="text-neo-accent">ЕФЕКТИВНОСТІ</span>
+                </h2>
+                <p class="font-bold text-gray-400 max-w-xl text-sm md:text-base">
+                    Якість життя та роботи визначається не кількістю відпрацьованих годин, а відсотком рутини, яку ви успішно доручили алгоритмам.
+                </p>
+            </div>
 
-// Mobile Menu
-const menuBtn = document.getElementById('menu-btn');
-const mobileMenu = document.getElementById('mobile-menu');
-const closeMenu = document.getElementById('close-menu');
+            <!-- INTERACTIVE CALCULATOR -->
+            <div id="calculator" class="mb-20 border-4 border-neo-white bg-neo-bg text-neo-black p-6 md:p-8 shadow-[8px_8px_0px_0px_#A3FF00] rounded-none">
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                    <div class="lg:col-span-7 space-y-6">
+                        <div class="flex items-center gap-2 mb-2">
+                            <i class="w-6 h-6 text-neo-purple" data-lucide="calculator"></i>
+                            <h3 class="font-heading text-xl md:text-2xl tracking-tight text-neo-black">
+                                ІНТЕРАКТИВНИЙ КАЛЬКУЛЯТОР ШІ-ПОТЕНЦІАЛУ
+                            </h3>
+                        </div>
+                        <p class="font-mono text-xs text-stone-600 uppercase tracking-wider font-bold">
+                            Вкажіть ваші параметри, щоб отримати розрахунок економії часу:
+                        </p>
 
-menuBtn.addEventListener('click', () => mobileMenu.classList.add('open'));
-closeMenu.addEventListener('click', () => mobileMenu.classList.remove('open'));
-mobileMenu.addEventListener('click', (e) => {
-if (e.target.tagName === 'A') mobileMenu.classList.remove('open');
-});
+                        <!-- Profession select -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-bold uppercase tracking-wider">
+                                1. Ваш напрям діяльності:
+                            </label>
+                            <div class="flex flex-wrap gap-2" id="profession-group">
+                                <button onclick="setProfession('freelance')" id="prof-freelance" class="profession-btn text-xs md:text-sm font-bold px-3 py-2 border-2 border-neo-black bg-neo-main text-white active:translate-y-[1px] transition-all">
+                                    Фріланс / Маркетинг / Дизайн
+                                </button>
+                                <button onclick="setProfession('developer')" id="prof-developer" class="profession-btn text-xs md:text-sm font-bold px-3 py-2 border-2 border-neo-black bg-white hover:bg-stone-50 shadow-neo-sm active:translate-y-[1px] transition-all">
+                                    Розробка / IT / Код
+                                </button>
+                                <button onclick="setProfession('business')" id="prof-business" class="profession-btn text-xs md:text-sm font-bold px-3 py-2 border-2 border-neo-black bg-white hover:bg-stone-50 shadow-neo-sm active:translate-y-[1px] transition-all">
+                                    Підприємець / Власник Бізнесу
+                                </button>
+                            </div>
+                        </div>
 
-// Preloader
-const tlLoader = gsap.timeline();
-tlLoader.to(".loader-bar", { height: "100%", duration: 0.8, stagger: 0.1, ease: "power4.inOut" })
-.to("#loader h1", { opacity: 0, duration: 0.2 })
-.to("#loader", { y: "-100%", duration: 0.8, ease: "power4.inOut" }, "-=0.2")
-.from(".hero-text", { y: 200, opacity: 0, rotate: 5, stagger: 0.1, duration: 1, ease: "power3.out" }, "-=0.5");
+                        <!-- Hours range slider -->
+                        <div class="space-y-3">
+                            <div class="flex justify-between items-center text-sm font-bold uppercase tracking-wider">
+                                <span>2. Скільки годин на день займає рутина?</span>
+                                <span class="bg-neo-purple text-white px-2 py-0.5 border-2 border-neo-black font-mono" id="routine-val-label">
+                                    3 год / день
+                                </span>
+                            </div>
+                            <input
+                                type="range"
+                                min="1"
+                                max="8"
+                                value="3"
+                                id="routine-slider"
+                                oninput="onRoutineSliderInput(this.value)"
+                                class="w-full accent-neo-main h-4 bg-white border-2 border-neo-black cursor-pointer appearance-none rounded-none focus:outline-none"
+                            />
+                            <div class="flex justify-between text-xs font-mono font-bold text-stone-600">
+                                <span>1-2 год (Дрібниці)</span>
+                                <span>4 (Половина дня)</span>
+                                <span>8 (Завал)</span>
+                            </div>
+                        </div>
 
-// Lenis Smooth Scroll
-const lenis = new Lenis({ duration: 1.2, easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), smooth: true, touchMultiplier: 2 });
-function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-requestAnimationFrame(raf);
-gsap.registerPlugin(ScrollTrigger);
+                        <!-- AI Level selection -->
+                        <div class="space-y-2">
+                            <label class="block text-sm font-bold uppercase tracking-wider">
+                                3. Який ваш рівень взаємодії з ШІ?
+                            </label>
+                            <div class="flex flex-wrap gap-2" id="ai-level-group">
+                                <button onclick="setAiLevel('none')" id="ai-none" class="ai-btn text-xs md:text-sm font-bold px-3 py-1.5 border-2 border-neo-black bg-white hover:bg-stone-50 shadow-neo-sm active:translate-y-[1px] transition-all">
+                                    Купував підписку, але не користуюсь
+                                </button>
+                                <button onclick="setAiLevel('basic')" id="ai-basic" class="ai-btn text-xs md:text-sm font-bold px-3 py-1.5 border-2 border-neo-black bg-neo-purple text-white active:translate-y-[1px] transition-all">
+                                    Користуюсь ChatGPT базово та хаотично
+                                </button>
+                                <button onclick="setAiLevel('expert')" id="ai-expert" class="ai-btn text-xs md:text-sm font-bold px-3 py-1.5 border-2 border-neo-black bg-white hover:bg-stone-50 shadow-neo-sm active:translate-y-[1px] transition-all">
+                                    Оптимізував процеси, шукаю левел-ап
+                                </button>
+                            </div>
+                        </div>
+                    </div>
 
-// Animations
-gsap.to(".float-anim", { y: -100, scrollTrigger: { trigger: "body", start: "top top", end: "bottom top", scrub: 1 } });
-gsap.to(".float-anim-reverse", { y: 150, rotate: 45, scrollTrigger: { trigger: "body", start: "top top", end: "bottom top", scrub: 1.5 } });
+                    <!-- RHS Result Card -->
+                    <div class="lg:col-span-5 bg-neo-white border-4 border-neo-black p-6 shadow-neo rotate-1 flex flex-col justify-between min-h-[340px]">
+                        <div class="space-y-4">
+                            <div class="flex items-center gap-2 bg-neo-accent border-2 border-neo-black px-3 py-1.5 inline-block">
+                                <i class="w-4 h-4 text-neo-black fill-current animate-pulse shrink-0" data-lucide="sparkles"></i>
+                                <span class="font-heading text-xs uppercase text-neo-black tracking-widest font-black">
+                                    Персональна Оцінка
+                                </span>
+                            </div>
 
-document.querySelectorAll(".manifesto-text").forEach(text => {
-gsap.to(text, { opacity: 1, scrollTrigger: { trigger: text, start: "top 80%", end: "top 40%", scrub: true } });
-});
+                            <div class="space-y-1 text-left">
+                                <span class="text-xs font-mono font-bold text-gray-500 uppercase">
+                                    Заощадження часу щотижня:
+                                </span>
+                                <div class="font-heading text-4xl md:text-5xl text-neo-main leading-tight" id="calc-hours">
+                                    ~6.0 годин
+                                </div>
+                                <p class="text-xs font-semibold text-gray-600 italic" id="calc-days-footnote">
+                                    Це майже 3.0 повних робочих днів свободи щомісяця!
+                                </p>
+                            </div>
 
-document.querySelectorAll('.stats-card').forEach(card => {
-card.addEventListener('mousemove', (e) => {
-const rect = card.getBoundingClientRect();
-const x = e.clientX - rect.left;
-const y = e.clientY - rect.top;
-gsap.to(card, { x: (x - rect.width / 2) / 5, y: (y - rect.height / 2) / 5, duration: 0.3, ease: "power2.out" });
-});
-card.addEventListener('mouseleave', () => gsap.to(card, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.5)" }));
-});
+                            <div class="space-y-1 border-t-2 border-stone-200 pt-3 text-left">
+                                <span class="text-xs font-mono font-bold text-gray-500 uppercase">
+                                    Приріст ККД:
+                                </span>
+                                <div class="font-heading text-xl text-neo-black" id="calc-kpd">
+                                    +40% до швидкості роботи
+                                </div>
+                            </div>
 
-gsap.from(".service-card", { y: 100, opacity: 0, rotate: 5, stagger: 0.1, duration: 0.8, ease: "back.out(1.7)", scrollTrigger: { trigger: ".service-card", start: "top 85%" } });
+                            <div class="space-y-1 border-t-2 border-stone-200 pt-3 text-left">
+                                <span class="text-xs font-mono font-bold text-neo-purple uppercase flex items-center gap-1">
+                                    <i class="w-3.5 h-3.5" data-lucide="lightbulb"></i> Рекомендований Пакет:
+                                </span>
+                                <div class="font-heading text-lg text-neo-black underline decoration-neo-purple decoration-3 underline-offset-4" id="calc-pkg-suggestion">
+                                    AI-діагностика
+                                </div>
+                                <p class="text-xs text-stone-600 font-bold leading-normal mt-1" id="calc-pkg-details">
+                                    Ідеальний старт, щоб розібрати ключові затики та вийти на регулярну оптимізацію.
+                                </p>
+                            </div>
+                        </div>
 
-// Animate process block
-gsap.from("#process > div > div", { y: 100, opacity: 0, stagger: 0.1, duration: 0.8, ease: "back.out(1.7)", scrollTrigger: { trigger: "#process", start: "top 85%" } });
+                        <div class="mt-6 pt-4 border-t-2 border-stone-200">
+                            <a
+                                href="https://tally.so/r/lbMd8v"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="w-full flex items-center justify-center gap-2 font-heading text-xs md:text-sm border-3 border-neo-black bg-neo-accent text-neo-black p-3.5 hover:bg-neo-black hover:text-neo-accent transition-all duration-300"
+                            >
+                                ЗАБРОНЮВАТИ РЕЗУЛЬТАТ
+                                <i class="w-4 h-4 stroke-[2.5]" data-lucide="arrow-right"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-// Animate FAQ block
-gsap.from(".faq-item", { y: 50, opacity: 0, stagger: 0.15, duration: 0.6, ease: "power2.out", scrollTrigger: { trigger: "#faq", start: "top 80%" } });
+            <!-- Packages grid layout cards -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 md:gap-10">
+                <!-- Package 1 -->
+                <div class="border-4 border-neo-white p-6 md:p-8 flex flex-col justify-between relative transition-all duration-300 bg-neo-bg text-neo-black shadow-[8px_8px_0px_0px_#9D00FF]">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-mono text-xs uppercase font-bold border border-current px-2 py-0.5 rounded-none bg-stone-100/10">
+                                Швидкий Старт
+                            </span>
+                            <span class="font-mono text-xs font-bold text-gray-500">
+                                90 хвилин · Особиста сесія
+                            </span>
+                        </div>
 
-// Cursor (desktop only)
-if (window.innerWidth > 768 && window.matchMedia('(pointer: fine)').matches) {
-const cursor = document.getElementById('cursor');
-const links = document.querySelectorAll('a, button, .service-card, summary');
-document.addEventListener('mousemove', (e) => {
-cursor.style.left = e.clientX + 'px';
-cursor.style.top = e.clientY + 'px';
-});
-links.forEach(link => {
-link.addEventListener('mouseenter', () => {
-cursor.style.width = '60px'; cursor.style.height = '60px';
-cursor.style.backgroundColor = '#A3FF00'; cursor.style.mixBlendMode = 'exclusion';
-});
-link.addEventListener('mouseleave', () => {
-cursor.style.width = '24px'; cursor.style.height = '24px';
-cursor.style.backgroundColor = '#0f0f0f'; cursor.style.mixBlendMode = 'difference';
-});
-});
-}
-</script>
+                        <h3 class="font-heading text-2xl md:text-3xl mb-1 text-left leading-none tracking-tight">
+                            AI-діагностика
+                        </h3>
+                        
+                        <div class="font-heading text-3xl md:text-4xl text-neo-main mb-6 mt-1 text-left border-b-2 border-current/20 pb-4">
+                            2 500 грн
+                        </div>
+
+                        <p class="font-sans font-bold text-sm text-left mb-6 leading-relaxed opacity-90">
+                            Для фрілансерів та спеціалістів, які хочуть розібратися самостійно та отримати чіткий вектор руху.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Аудит щоденних монотонних задач</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Створення 3 індивідуальних промптів</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Підбір оптимальних інструментів</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Гайд інтеграції на 30 днів у PDF</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-current/10">
+                        <a
+                            href="https://tally.so/r/lbMd8v"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full flex items-center justify-center gap-2 font-heading text-sm border-3 border-neo-black bg-neo-accent text-neo-black py-4 shadow-neo-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-neo active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-100 font-extrabold uppercase"
+                        >
+                            ЗАМОВИТИ СЕСІЮ
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Package 2 -->
+                <div class="border-4 border-neo-white p-6 md:p-8 flex flex-col justify-between relative transition-all duration-300 bg-neo-purple text-neo-white shadow-[8px_8px_0px_0px_#A3FF00] -rotate-1">
+                    <div class="absolute -top-4 -right-2 bg-neo-main text-neo-white border-2 border-neo-white font-mono text-[10px] uppercase font-black px-2.5 py-1 rotate-6 shadow-neo-sm z-20 animate-pulse">
+                        ПОПУЛЯРНО 🔥
+                    </div>
+
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-mono text-xs uppercase font-bold border border-current px-2 py-0.5 rounded-none bg-stone-100/10">
+                                Повна Оптимізація
+                            </span>
+                            <span class="font-mono text-xs font-bold text-purple-200">
+                                4 сесії · 30 днів супроводу
+                            </span>
+                        </div>
+
+                        <h3 class="font-heading text-2xl md:text-3xl mb-1 text-left leading-none tracking-tight">
+                            Супровід: Pro
+                        </h3>
+                        
+                        <div class="font-heading text-3xl md:text-4xl text-neo-accent mb-6 mt-1 text-left border-b-2 border-current/20 pb-4">
+                            9 000 грн
+                        </div>
+
+                        <p class="font-sans font-bold text-sm text-left mb-6 leading-relaxed opacity-90">
+                            Комплексна перебудова ваших робочих процесів. Створюємо індивідуальні системні інструкції та впроваджуємо мультимоделі.
+                        </p>
+
+                        <div class="space-y-3 mb-8 text-neo-bg">
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-accent text-neo-black p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">4 індивідуальні практичні Zoom-сесії</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-accent text-neo-black p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Кастмні інструкції (Personal GPTs)</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-accent text-neo-black p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Оптимізація кодування у Cursor (для IT)</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-accent text-neo-black p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">30 днів підтримки в месенджері та аудит промптів</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-current/10">
+                        <a
+                            href="https://tally.so/r/lbMd8v"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full flex items-center justify-center gap-2 font-heading text-sm border-3 border-neo-black bg-neo-accent text-neo-black py-4 shadow-neo-sm hover:translate-x-[-1px] hover:translate-y-[-1px] hover:shadow-neo active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all duration-100 font-extrabold uppercase"
+                        >
+                            ЗАМОВИТИ СУПРОВІД
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Package 3 -->
+                <div class="border-4 border-neo-white p-6 md:p-8 flex flex-col justify-between relative transition-all duration-300 bg-neo-bg text-neo-black shadow-[8px_8px_0px_0px_#FF4D00] rotate-1">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="font-mono text-xs uppercase font-bold border border-current px-2 py-0.5 rounded-none bg-stone-100/10">
+                                Системна Оптимізація
+                            </span>
+                            <span class="font-mono text-xs font-bold text-gray-500">
+                                Корпоративний Інтеграл
+                            </span>
+                        </div>
+
+                        <h3 class="font-heading text-2xl md:text-3xl mb-1 text-left leading-none tracking-tight">
+                            Для Бізнесу
+                        </h3>
+                        
+                        <div class="font-heading text-3xl md:text-4xl text-neo-main mb-6 mt-1 text-left border-b-2 border-current/20 pb-4">
+                            від 25 000 грн
+                        </div>
+
+                        <p class="font-sans font-bold text-sm text-left mb-6 leading-relaxed opacity-90">
+                            Комплексний аудит бізнес-процесів компанії. Навчання команди, автоматизація рутинних операцій, побудова GPT-асистентів.
+                        </p>
+
+                        <div class="space-y-3 mb-8">
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Широкий аудит робочих процесів компанії</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Кастомні асистенти з базою знань компанії</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Групові практичні лекції та воркшопи</span>
+                            </div>
+                            <div class="flex items-start gap-2.5 text-sm font-medium">
+                                <span class="bg-neo-main text-white p-0.5 border border-neo-black shrink-0 mt-0.5">
+                                    <i class="w-3.5 h-3.5 stroke-[3]" data-lucide="check"></i>
+                                </span>
+                                <span class="text-left leading-normal">Розробка регламентів та промпт-карт</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t-2 border-current/10">
+                        <a
+                            href="https://tally.so/r/lbMd8v"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="w-full flex items-center justify-center gap-2 font-heading text-sm border-3 border-neo-black bg-neo-black text-neo-white py-4 hover:bg-neo-main active:translate-x-[1px] active:translate-y-[1px] transition-all font-extrabold uppercase"
+                        >
+                            ОТРИМАТИ ПРОПОЗИЦІЮ
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROCESS FLOW & METRIC INFOSECTION -->
+    <section id="toolkit" class="py-20 md:py-28 bg-neo-bg border-b-4 border-neo-black">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <div class="lg:col-span-5 space-y-6 text-left">
+                    <span class="font-mono text-xs uppercase bg-neo-black text-neo-accent px-3 py-1 border-2 border-neo-black font-bold inline-block">
+                        НАШІ ІНСТРУМЕНТИ
+                    </span>
+                    <h2 class="font-heading text-4xl md:text-6xl text-neo-black leading-none uppercase">
+                        ВІД КЛІКІВ ДО КУРСОРУ
+                    </h2>
+                    <p class="font-bold text-gray-700 leading-relaxed text-sm md:text-base">
+                        Ми не прив'язані до конкретної компанії. Ми використовуємо комбінацію найкращих світових нейромереж для отримання максимальної швидкості та глибини роботи. Тільки те, що пройшло мій приватний аудит.
+                    </p>
+                    
+                    <div class="border-3 border-neo-black bg-neo-white p-5 shadow-neo-sm space-y-3">
+                        <h4 class="font-heading text-base text-neo-purple flex items-center gap-1.5">
+                            <i class="w-4 h-4" data-lucide="terminal"></i> ТЕХНОЛОГІЇ КАРДИНАЛЬНОГО ПРИСКОРЕННЯ
+                        </h4>
+                        <p class="font-mono text-xs text-gray-600 leading-relaxed font-bold">
+                            Навчіться керувати контекстним вікном понад 1 000 000 токенів, підключати бази знань, форматувати вихідні JSON файли та писати робочі інструкції з першої спроби.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="border-3 border-neo-black p-6 bg-neo-white shadow-neo-sm space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-none bg-neo-purple text-neo-white font-bold flex items-center justify-center text-xs">A</span>
+                            <h3 class="font-heading text-lg">АНАЛІТИКА & ТЕКСТ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 font-bold leading-normal">
+                            Claude 3.5 Sonnet / GPT-4o — для складних аналітичних звітів, створення унікального tone of voice без канцеляризмів та написання скриптів.
+                        </p>
+                    </div>
+
+                    <div class="border-3 border-neo-black p-6 bg-neo-white shadow-neo-sm space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-none bg-neo-main text-neo-white font-bold flex items-center justify-center text-xs">C</span>
+                            <h3 class="font-heading text-lg">CURSOR & КОДИНГ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 font-bold leading-normal">
+                            Штучний інтелект усередині редактора коду — розробляйте завершені сайти та сервіси за декілька годин, навіть якщо ви ніколи не програмували.
+                        </p>
+                    </div>
+
+                    <div class="border-3 border-neo-black p-6 bg-neo-white shadow-neo-sm space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-none bg-neo-accent text-neo-black font-bold flex items-center justify-center text-xs">X</span>
+                            <h3 class="font-heading text-lg">ЛОКАЛЬНІ МОДЕЛІ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 font-bold leading-normal">
+                            DeepSeek-v3 / Grok 2 — миттєві відповіді на технічні питання, розширений промпт-інжиніринг та прагматичні автоматизації.
+                        </p>
+                    </div>
+
+                    <div class="border-3 border-neo-black p-6 bg-neo-white shadow-neo-sm space-y-2">
+                        <div class="flex items-center gap-2">
+                            <span class="w-8 h-8 rounded-none bg-neo-blue text-white font-bold flex items-center justify-center text-xs">V</span>
+                            <h3 class="font-heading text-lg">ВІЗУАЛІЗАЦІЯ</h3>
+                        </div>
+                        <p class="text-xs text-gray-600 font-bold leading-normal">
+                            Midjourney v6 / Recraft V3 / flux1 — розробка векторних елементів, лендингів, банерів, ілюстрацій та баз даних референсів у єдиному бренд-стилі.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ INTEGRATION -->
+    <section id="faq" class="py-20 md:py-28 bg-neo-white border-b-4 border-neo-black">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-16 space-y-4">
+                <span class="font-mono text-xs uppercase bg-neo-purple text-neo-white px-3 py-1 border-2 border-neo-black font-bold inline-block">
+                    ХВИЛЮВАННЯ ТА ВІДПОВІДІ
+                </span>
+                <h2 class="font-heading text-4xl md:text-5xl text-neo-black leading-none uppercase">
+                    ЧАСТІ ПИТАННЯ (FAQ)
+                </h2>
+                <p class="font-bold text-gray-500 font-sans text-sm md:text-base">
+                    Все, що ви хотіли знайти перед початком оптимізації. Простими словами без води.
+                </p>
+            </div>
+
+            <div class="space-y-4 text-left">
+                <!-- FAQ Item 1 -->
+                <div class="border-3 border-neo-black bg-neo-bg shadow-neo-sm">
+                    <button class="w-full flex justify-between items-center p-5 font-heading text-base md:text-lg text-left text-neo-black hover:bg-stone-50 select-none outline-none focus:outline-none" onclick="toggleFaq(1)">
+                        <span>ДЛЯ КОГО ЦЕ НАЙБІЛЬШ ЕФЕКТИВНО?</span>
+                        <i class="w-5 h-5 transition-transform duration-200" id="faq-icon-1" data-lucide="plus"></i>
+                    </button>
+                    <div class="hidden border-t-2 border-neo-black p-5 font-sans font-bold text-sm text-gray-700 bg-neo-white leading-relaxed" id="faq-content-1">
+                        Найбільший приріст (економія до 20 годин щотижня) помітний у трьох напрямах:
+                        <ul class="list-disc pl-5 mt-2 space-y-1.5">
+                            <li><strong class="text-neo-main">Маркетологи та Креатори:</strong> написання контенту, аналіз цільової аудиторії, розробка стратегій, копірайтинг.</li>
+                            <li><strong class="text-neo-purple">Розробники та IT-спеціалісти:</strong> навчання швидкісного кодингу в Cursor, створення скриптів, рефакторинг та автоматизація деплою.</li>
+                            <li><strong class="text-neo-blue">Підприємці:</strong> структурування хаотичних даних, створення корпоративних баз знань, швидкі відповіді клієнтам та ведення документації.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- FAQ Item 2 -->
+                <div class="border-3 border-neo-black bg-neo-bg shadow-neo-sm">
+                    <button class="w-full flex justify-between items-center p-5 font-heading text-base md:text-lg text-left text-neo-black hover:bg-stone-50 select-none outline-none focus:outline-none" onclick="toggleFaq(2)">
+                        <span>Я КОРРИСТУЮСЬ CHATGPT, ЧИМ ЦЕ КРАЩЕ ЗА ГУГЛ?</span>
+                        <i class="w-5 h-5 transition-transform duration-200" id="faq-icon-2" data-lucide="plus"></i>
+                    </button>
+                    <div class="hidden border-t-2 border-neo-black p-5 font-sans font-bold text-sm text-gray-700 bg-neo-white leading-relaxed" id="faq-content-2">
+                        Звичайний чат у браузері видає загальні та шаблонні відповіді, оскільки він не має вашого контексту, специфічних інструкцій та правильної логіки промптів. Ми будуємо систему: створюємо ваші персональні інструменти, вчимо комбінувати моделі (ChatGPT для одного завдання, Claude для аналізу великих файлів, Cursor для кодингу), щоб результати були передбачуваними та якісними з першої генерації.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 3 -->
+                <div class="border-3 border-neo-black bg-neo-bg shadow-neo-sm">
+                    <button class="w-full flex justify-between items-center p-5 font-heading text-base md:text-lg text-left text-neo-black hover:bg-stone-50 select-none outline-none focus:outline-none" onclick="toggleFaq(3)">
+                        <span>ЩО Я ОТРИМАЮ В РЕЗУЛЬТАТІ?</span>
+                        <i class="w-5 h-5 transition-transform duration-200" id="faq-icon-3" data-lucide="plus"></i>
+                    </button>
+                    <div class="hidden border-t-2 border-neo-black p-5 font-sans font-bold text-sm text-gray-700 bg-neo-white leading-relaxed" id="faq-content-3">
+                        Окрім самої практики на сесіях, ви отримаєте готовий, адаптований під вас набір інструментів: персональні скрипти, кастомні GPT-асистенти, шаблони промптів на кожен день та покроковий PDF-план дій для подальшої оптимізації протягом наступних місяців.
+                    </div>
+                </div>
+
+                <!-- FAQ Item 4 -->
+                <div class="border-3 border-neo-black bg-neo-bg shadow-neo-sm">
+                    <button class="w-full flex justify-between items-center p-5 font-heading text-base md:text-lg text-left text-neo-black hover:bg-stone-50 select-none outline-none focus:outline-none" onclick="toggleFaq(4)">
+                        <span>ЧИ ПОТРІБНО МЕНІ ВМІТИ ПРОГРАМУВАТИ?</span>
+                        <i class="w-5 h-5 transition-transform duration-200" id="faq-icon-4" data-lucide="plus"></i>
+                    </button>
+                    <div class="hidden border-t-2 border-neo-black p-5 font-sans font-bold text-sm text-gray-700 bg-neo-white leading-relaxed" id="faq-content-4">
+                        Абсолютно ні. Сучасний ШІ повністю стирає технічні бар'єри. Вся взаємодія будується людською мовою. Якщо ви вмієте пояснити задачу колезі — ви вже вмієте промптувати з моєю допомогою.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-neo-black text-neo-bg pt-20 pb-10 border-t-4 border-neo-black relative z-20">
+        <div class="max-w-7xl mx-auto px-4 md:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-6 flex flex-col items-center lg:items-start text-center lg:text-left space-y-4">
+                <h1 class="font-heading text-[12vw] sm:text-[10vw] lg:text-[7vw] leading-none text-neo-bg hover:text-neo-main hover:line-through transition-all cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    Kotovich<span class="text-neo-main">.</span>
+                </h1>
+                <p class="font-bold text-sm md:text-base text-gray-400 max-w-sm tracking-wide">
+                    Сучасна AI-консультація та системне проектування промптів від Юрія Котовича. Логіка для нелогічного світу.
+                </p>
+            </div>
+
+            <div class="lg:col-span-6 flex flex-col items-center lg:items-end space-y-5 text-xl sm:text-2xl md:text-3xl">
+                <!-- Telegram link -->
+                <a 
+                    href="https://t.me/ai24q" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="font-display font-medium text-neo-bg hover:text-neo-accent hover:translate-x-1.5 transition-all flex items-center gap-1.5 border-b-2 border-stone-850 pb-1"
+                >
+                    КАНАЛ "ШІ ДЛЯ ЛЮДЕЙ І БІЗНЕСУ"
+                    <i class="w-5 h-5 text-neo-accent shrink-0" data-lucide="arrow-up-right"></i>
+                </a>
+
+                <!-- Neobrutalist Tally CTA Box -->
+                <a 
+                    href="https://tally.so/r/lbMd8v" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    class="relative group mt-4 inline-block block"
+                >
+                    <div class="absolute inset-0 bg-neo-accent translate-x-2 translate-y-2 group-hover:translate-x-3 group-hover:translate-y-3 transition-transform"></div>
+                    <div class="relative border-4 border-neo-black bg-neo-bg px-6 py-3.5 font-heading text-lg md:text-2xl text-neo-black hover:-translate-y-0.5 hover:-translate-x-0.5 active:translate-x-1.5 active:translate-y-1.5 transition-transform duration-100 uppercase tracking-tight">
+                        ЗАПОВНИТИ АНКЕТУ НА TALLY
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 md:px-8 mt-20 pt-8 border-t-2 border-neo-white/10 flex flex-col md:flex-row justify-between items-center text-xs font-mono text-gray-500 gap-4 text-center">
+            <p>© 2026 Kotovich. ВСІ ПРАВА ЗАХИЩЕНІ.</p>
+            <p>СТВОРЕНО ЮРІЄМ КОТОВИЧЕМ ТА ШТУЧНИМИ НЕЙРОМЕРЕЖАМИ.</p>
+            <a 
+                href="https://t.me/ai24q" 
+                target="_blank" 
+                rel="noopener noreferrer" 
+                class="hover:text-neo-accent transition-colors flex items-center gap-1 font-bold"
+            >
+                <i class="w-3.5 h-3.5 fill-current" data-lucide="send"></i>
+                НАШ ТЕЛЕГРАМ-КАНАЛ: t.me/ai24q
+            </a>
+        </div>
+    </footer>
+
+    <!-- INTERACTIVE JAVASCRIPT LOGIC -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Drawer Control
+        const menuToggleBtn = document.getElementById('menu-toggle');
+        const mobileMenuOverlay = document.getElementById('mobile-menu');
+        const menuIcon = document.getElementById('menu-icon');
+        let isMenuOpen = false;
+
+        menuToggleBtn.addEventListener('click', () => {
+            isMenuOpen = !isMenuOpen;
+            if (isMenuOpen) {
+                mobileMenuOverlay.classList.remove('translate-x-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuOverlay.classList.add('translate-x-0', 'opacity-100');
+                menuIcon.setAttribute('data-lucide', 'x');
+                lucide.createIcons();
+            } else {
+                mobileMenuOverlay.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+                mobileMenuOverlay.classList.remove('translate-x-0', 'opacity-100');
+                menuIcon.setAttribute('data-lucide', 'menu');
+                lucide.createIcons();
+            }
+        });
+
+        function toggleMobileMenu() {
+            isMenuOpen = false;
+            mobileMenuOverlay.classList.add('translate-x-full', 'opacity-0', 'pointer-events-none');
+            mobileMenuOverlay.classList.remove('translate-x-0', 'opacity-100');
+            menuIcon.setAttribute('data-lucide', 'menu');
+            lucide.createIcons();
+        }
+
+        // Calculator Interactive Business Logic
+        let selectedProfession = 'freelance';
+        let selectedRoutineHours = 3;
+        let selectedAiLevel = 'basic';
+
+        function updateCalculator() {
+            // Hours Calculation logic
+            let efficiencyRatio = 0.4; // starting baseline coef 40%
+            if (selectedProfession === 'developer') {
+                efficiencyRatio = 0.55; // IT gets higher compression 55%
+            } else if (selectedProfession === 'business') {
+                efficiencyRatio = 0.45; // Business 45%
+            }
+
+            // AI multiplier config
+            let aiMultiplier = 1.0;
+            if (selectedAiLevel === 'none') {
+                aiMultiplier = 1.25; // zero experience means largest potential leap
+            } else if (selectedAiLevel === 'expert') {
+                aiMultiplier = 0.75; // optimized users get fine-tuning leap
+            }
+
+            // Calculations
+            const dailyEfficiencyHours = selectedRoutineHours * efficiencyRatio * aiMultiplier * 5; // Weekly savings (5 working days)
+            const weeklyHoursSaved = Math.max(1, Math.min(35, Math.round(dailyEfficiencyHours * 10) / 10));
+            const monthlyDaysSaved = Math.round((weeklyHoursSaved * 4.2) / 8 * 10) / 10;
+
+            // KPD increment speed
+            let speedKpdbaseline = 40;
+            if (selectedProfession === 'developer') speedKpdbaseline = 60;
+            if (selectedProfession === 'business') speedKpdbaseline = 45;
+            
+            if (selectedAiLevel === 'none') speedKpdbaseline += 15;
+            if (selectedAiLevel === 'expert') speedKpdbaseline -= 10;
+
+            // Recommended plan logic
+            let recommendedPackageName = 'AI-діагностика';
+            let recommendedPackageDescription = 'Ідеальний старт, щоб розібрати ключові затики та вийти на регулярну оптимізацію.';
+
+            if (selectedProfession === 'business' || selectedRoutineHours >= 6) {
+                recommendedPackageName = 'Корпоративний пакет';
+                recommendedPackageDescription = 'Спеціально для відбудови наскрізних бізнес-процесів компаній та навчання команд.';
+            } else if (weeklyHoursSaved >= 8 || selectedAiLevel === 'basic') {
+                recommendedPackageName = 'Супровід: Pro';
+                recommendedPackageDescription = 'Прогресивні 4 тижні з індивідуальними сесіями для повного автоматичного вивільнення часу.';
+            }
+
+            // Render calculations into DOM
+            document.getElementById('calc-hours').innerText = `~${weeklyHoursSaved.toFixed(1)} годин`;
+            document.getElementById('calc-days-footnote').innerText = `Це майже ${monthlyDaysSaved.toFixed(1)} повних робочих днів свободи щомісяця!`;
+            document.getElementById('calc-kpd').innerText = `+${speedKpdbaseline}% до швидкості роботи`;
+            document.getElementById('calc-pkg-suggestion').innerText = recommendedPackageName;
+            document.getElementById('calc-pkg-details').innerText = recommendedPackageDescription;
+        }
+
+        function setProfession(prof) {
+            selectedProfession = prof;
+            // Toggle highlight styles on group buttons
+            const buttons = document.querySelectorAll('.profession-btn');
+            buttons.forEach(btn => {
+                btn.className = 'profession-btn text-xs md:text-sm font-bold px-3 py-2 border-2 border-neo-black rounded-none transition-all active:translate-y-[1px] bg-white hover:bg-stone-50 shadow-neo-sm';
+            });
+            
+            const selectedBtn = document.getElementById(`prof-${prof}`);
+            selectedBtn.className = 'profession-btn text-xs md:text-sm font-bold px-3 py-2 border-2 border-neo-black rounded-none transition-all active:translate-y-[1px] bg-neo-main text-white shadow-none';
+            
+            updateCalculator();
+        }
+
+        function onRoutineSliderInput(val) {
+            selectedRoutineHours = parseInt(val);
+            document.getElementById('routine-val-label').innerText = `${val} год / день`;
+            updateCalculator();
+        }
+
+        function setAiLevel(lvl) {
+            selectedAiLevel = lvl;
+            const buttons = document.querySelectorAll('.ai-btn');
+            buttons.forEach(btn => {
+                btn.className = 'ai-btn text-xs md:text-sm font-bold px-3 py-1.5 border-2 border-neo-black bg-white hover:bg-stone-50 shadow-neo-sm active:translate-y-[1px] transition-all';
+            });
+            const selectedBtn = document.getElementById(`ai-${lvl}`);
+            selectedBtn.className = 'ai-btn text-xs md:text-sm font-bold px-3 py-1.5 border-2 border-neo-black bg-neo-purple text-white active:translate-y-[1px] transition-all shadow-none';
+            updateCalculator();
+        }
+
+        // Initialize first run
+        updateCalculator();
+
+        // FAQ Accordion Controls
+        function toggleFaq(id) {
+            const content = document.getElementById(`faq-content-${id}`);
+            const icon = document.getElementById(`faq-icon-${id}`);
+            const isHidden = content.classList.contains('hidden');
+
+            // Toggle Class
+            if (isHidden) {
+                content.classList.remove('hidden');
+                icon.style.transform = 'rotate(45deg)';
+                icon.setAttribute('data-lucide', 'minus');
+            } else {
+                content.classList.add('hidden');
+                icon.style.transform = 'rotate(0deg)';
+                icon.setAttribute('data-lucide', 'plus');
+            }
+            lucide.createIcons();
+        }
+    </script>
 </body>
 </html>
